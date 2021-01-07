@@ -1,89 +1,72 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Character from '../Character';
 import {
-	StyledGame,
-	Heading,
-	GameInner,
-	EmptyEnemy,
-	RoundResult,
-	PlayAgain,
+  StyledGame,
+  Heading,
+  GameInner,
+  EmptyEnemy,
+  Title,
+  PlayAgain,
+  RoundResult,
 } from './style';
 import { IGameProps } from '../../interfaces';
 import { rules } from '../../data';
-import { ScoreContext } from '../../context/Score';
+import { ScoreContext } from '../../context/score';
 
 const Game = ({ playerPick, enemyPick, finishRound }: IGameProps) => {
-	const { setScore } = useContext(ScoreContext);
-	const [isEnemyShown, setEnemyShown] = useState<boolean>(false);
-	const [winner, setWinner] = useState<string>('');
+  const { setScore } = useContext(ScoreContext);
+  const [isEnemyShown, setEnemyShown] = useState<boolean>(false);
+  const [roundResult, setRoundResult] = useState<string>('');
 
-	useEffect(() => {
-		const getRoundResult = (): void => {
-			setEnemyShown(true);
+  useEffect(() => {
+    const getRoundResult = (): void => {
+      setEnemyShown(true);
 
-			const playerChar: string = playerPick.name;
-			const enemyChar: string = enemyPick.name;
+      const playerChar: string = playerPick.name;
+      const enemyChar: string = enemyPick.name;
 
-			if (rules[playerChar].beats.includes(enemyChar)) {
-				setWinner('player');
+      if (rules[playerChar].beats.includes(enemyChar)) {
+        setRoundResult('you win');
 
-				setScore !== undefined &&
-					setScore((score) => score + 1);
-			} else if (rules[playerChar].lose.includes(enemyChar)) {
-				setWinner('enemy');
+        setScore !== undefined && setScore((score) => score + 1);
+      } else if (rules[playerChar].lose.includes(enemyChar)) {
+        setRoundResult('you lose');
 
-				setScore !== undefined &&
-					setScore((score) => score - 1);
-			} else {
-				setWinner('draw');
-			}
-		};
+        setScore !== undefined && setScore((score) => score - 1);
+      } else {
+        setRoundResult('draw');
+      }
+    };
 
-		const timerId: number = setTimeout(getRoundResult, 2000);
+    const timerId: number = setTimeout(getRoundResult, 2000);
 
-		return (): void => clearTimeout(timerId);
-	}, [playerPick, enemyPick, setScore]);
+    return (): void => clearTimeout(timerId);
+  }, [playerPick, enemyPick, setScore]);
 
-	let roundResultTitle: string = '';
+  return (
+    <StyledGame>
+      <GameInner>
+        <Heading>you picked</Heading>
+        <Character info={playerPick} size="large" />
+      </GameInner>
 
-	switch (winner) {
-		case 'player': {
-			roundResultTitle = 'you win';
-			break;
-		}
-		case 'enemy': {
-			roundResultTitle = 'you lose';
-			break;
-		}
-		default: {
-			roundResultTitle = 'draw';
-		}
-	}
+      {roundResult !== '' && (
+        <RoundResult>
+          <Title>{roundResult}</Title>
+          <PlayAgain onClick={finishRound}>play again</PlayAgain>
+        </RoundResult>
+      )}
 
-	return (
-		<StyledGame>
-			<GameInner>
-				<Heading>you picked</Heading>
-				<Character info={playerPick} size="large" />
-			</GameInner>
-
-			{winner.length > 0 && (
-				<div>
-					<RoundResult>{roundResultTitle}</RoundResult>
-					<PlayAgain onClick={finishRound}>play again</PlayAgain>
-				</div>
-			)}
-
-			<GameInner>
-				<Heading>the house picked</Heading>
-				{isEnemyShown ? (
-					<Character info={enemyPick} size="large" />
-				) : (
-					<EmptyEnemy />
-				)}
-			</GameInner>
-		</StyledGame>
-	);
+      <GameInner>
+        <Heading>the house picked</Heading>
+        {isEnemyShown ? (
+          <Character info={enemyPick} size="large" />
+        ) : (
+          <EmptyEnemy />
+        )}
+      </GameInner>
+    </StyledGame>
+  );
 };
 
 export default Game;

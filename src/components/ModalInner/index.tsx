@@ -3,16 +3,16 @@ import { Heading, Header, RulesImage, Close } from './style';
 import { IModalProps } from '../../interfaces';
 
 const ModalInner = ({ closeModal }: IModalProps) => {
-	return (
-		<>
-			<Header>
-				<Heading>rules</Heading>
-				<Close onClick={closeModal}></Close>
-			</Header>
+  return (
+    <>
+      <Header>
+        <Heading>rules</Heading>
+        <Close onClick={closeModal}></Close>
+      </Header>
 
-            <RulesImage />
-		</>
-	);
+      <RulesImage />
+    </>
+  );
 };
 
 export default ModalInner;

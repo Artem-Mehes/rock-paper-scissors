@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const FooterStyle = styled.footer`
     text-align: right;
+
+    @media (max-width: 710px) {
+        text-align: center;
+	}
 `;
 
 export const Button = styled.button`
@@ -17,6 +21,7 @@ export const Button = styled.button`
     outline: none;
 
     &:hover {
-        border-color: ${({ theme }) => theme.colors.regularText};
+        border-color: ${({ theme }) => theme.colors.hoverBtnBorder};
+        background-color: ${({ theme }) => theme.colors.hoverBtnBg};
     }
 `;

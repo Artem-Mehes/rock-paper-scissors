@@ -23,6 +23,10 @@ const GlobalStyle = createGlobalStyle<{theme: ITheme}>`
         color: ${({ theme }) => theme.colors.regularText};
         padding: 2rem;
         height: inherit;
+
+        @media (max-width: 710px) {
+            padding: 1rem;
+        }
     }
 
     h1 {

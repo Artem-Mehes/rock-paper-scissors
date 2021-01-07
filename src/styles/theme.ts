@@ -24,7 +24,9 @@ const theme: ITheme = {
         spockGradient: 'radial-gradient(#40b9ce, #52bed1)',
         spockShadow: '#387b87',
         emptyEnemy: '#000',
-        playAgainBg: '#fff'
+        playAgainBg: '#fff',
+        hoverBtnBg: '#000',
+        hoverBtnBorder: '#fff'
     },
     font: "'Barlow Semi Condensed', sans-serif",
 }

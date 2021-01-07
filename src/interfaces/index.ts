@@ -50,3 +50,7 @@ export interface IScoreCtx {
     score: number
     setScore: Dispatch<SetStateAction<number>>
 }
+
+export interface ICharactersProps {
+    startGame: (playerPick: ICharacter) => void
+}

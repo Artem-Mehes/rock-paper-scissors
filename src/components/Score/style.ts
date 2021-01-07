@@ -4,10 +4,15 @@ export const ScoreStyle = styled.div`
     background-color: ${({ theme }) => theme.colors.scoreBg};
     border-radius: 10px;
     width: 150px;
-    padding: 1rem;
+    padding: 0.7rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-width: 710px) {
+        width: 110px;
+        padding: 0.4rem;
+	}
 `;
 
 export const ScoreHeading = styled.h1`
@@ -21,4 +26,14 @@ export const Number = styled.span`
     font-size: 4rem;
     font-weight: 700;
     opacity: .9;
+`;
+
+export const ResetBtn = styled.button`
+    cursor: pointer;
+    background-color: inherit;
+    border: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
 `;

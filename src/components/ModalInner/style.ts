@@ -17,39 +17,50 @@ export const RulesImage = styled.div`
     height: 100%;
     background-repeat: no-repeat;
     background-position: center;
+
+    @media (max-width: 520px) {
+        background-size: contain;
+    }
 `;
 
 export const Close = styled.button`
-    position: relative;
-    height: 30px;
-    width: 30px;
-    background-color: inherit;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+	position: relative;
+	height: 30px;
+	width: 30px;
+	background-color: inherit;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
 
-    &::before,
-    &::after {
-        content: '';
-        position: absolute;
-        width: 30px;
-        height: 2px;
-        background-color: ${({ theme }) => theme.colors.closeModal};
-    }
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		width: 30px;
+		height: 2px;
+		background-color: ${({ theme }) => theme.colors.closeModal};
+	}
 
-    &:before {
-        transform: rotate(45deg);
-    }
+	&:before {
+		transform: rotate(45deg);
+	}
 
-    &:after {
-        transform: rotate(-45deg);
-    }
+	&:after {
+		transform: rotate(-45deg);
+	}
 
-    &:hover {
-        &::before,
-        &::after {
-            background-color: ${({ theme }) => theme.colors.hoverCloseModal};
-        }
-    }
+	&:hover {
+		&::before,
+		&::after {
+			background-color: ${({ theme }) => theme.colors.hoverCloseModal};
+		}
+	}
+
+	@media (max-width: 520px) {
+		position: absolute;
+		bottom: 40px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
 `;
