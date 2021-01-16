@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ICharacterStyleProps } from '../../interfaces';
 
 export const StyledCharacter = styled.div`
@@ -53,10 +53,19 @@ export const StyledCharacter = styled.div`
   @media (max-width: 710px) {
     width: ${({ size }) => (size === 'large' ? '140px' : '100px')};
     height: ${({ size }) => (size === 'large' ? '140px' : '100px')};
+    ${({ size, theme, characterName }) =>
+      size === 'large' &&
+      css`
+        box-shadow: inset 0px -8px 0px 0px ${theme.colors[`${characterName}Shadow`]};
+      `}
 
     &::before {
       width: ${({ size }) => (size === 'large' ? '100px' : '80px')};
       height: ${({ size }) => (size === 'large' ? '100px' : '80px')};
+      box-shadow: ${({ theme, size }) =>
+        `inset 0px ${size === 'large' && '8px'} 0px 0px ${
+          theme.colors.charactersShadow
+        }`};
     }
 
     &::after {

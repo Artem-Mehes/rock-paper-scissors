@@ -13,7 +13,11 @@ export const StyledGame = styled.div`
   @media (max-width: 1070px) {
     min-width: 100%;
     align-items: initial;
-    margin-top: 4rem;
+    padding-top: 4rem;
+  }
+
+  @media (max-width: 710px) {
+    justify-content: space-around;
   }
 `;
 
@@ -25,8 +29,15 @@ export const GameInner = styled.div`
   align-items: center;
   min-width: 150px;
 
+  @media (max-width: 1070px) {
+    margin-top: 56px;
+  }
+
   @media (max-width: 710px) {
-    justify-content: space-evenly;
+    flex-direction: column-reverse;
+    max-height: 233px;
+    text-align: center;
+    margin-top: 100px;
   }
 `;
 
@@ -35,6 +46,10 @@ export const Heading = styled.h3`
   letter-spacing: 2px;
   font-weight: 500;
   font-size: 1.6rem;
+
+  @media (max-width: 710px) {
+    width: 142px;
+  }
 `;
 
 export const EmptyEnemy = styled.div`
@@ -81,8 +96,13 @@ export const PlayAgain = styled.button`
 export const RoundResult = styled.div`
   @media (max-width: 1070px) {
     position: absolute;
-    bottom: 160px;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  @media (max-width: 710px) {
+    width: 280px;
+    text-align: center;
   }
 `;
